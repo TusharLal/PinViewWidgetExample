@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/pinText_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/pin_edittext_margin"
+            android:background="@drawable/create_pin_background"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:digits="1234567890"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/four_pin_focused_bg"
+            android:textSize="@dimen/four_digit_pin_text_size" />
+
+        <EditText
+            android:id="@+id/pinText_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/pin_edittext_margin"
+            android:layout_marginStart="@dimen/pin_edittext_margin"
+            android:background="@drawable/create_pin_background"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:digits="1234567890"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/four_pin_focused_bg"
+            android:textSize="@dimen/four_digit_pin_text_size" />
+
+        <EditText
+            android:id="@+id/pinText_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/pin_edittext_margin"
+            android:layout_marginStart="@dimen/pin_edittext_margin"
+            android:background="@drawable/create_pin_background"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:digits="1234567890"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/four_pin_focused_bg"
+            android:textSize="@dimen/four_digit_pin_text_size" />
+
+        <EditText
+            android:id="@+id/pinText_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/pin_edittext_margin"
+            android:background="@drawable/create_pin_background"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:digits="1234567890"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/four_pin_focused_bg"
+            android:textSize="@dimen/four_digit_pin_text_size" />
+
+    </LinearLayout>
+</merge>
