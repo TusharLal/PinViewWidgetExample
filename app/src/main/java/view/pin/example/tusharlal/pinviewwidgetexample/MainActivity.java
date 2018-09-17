@@ -22,4 +22,9 @@ public class MainActivity extends AppCompatActivity implements PinView.OnPinValu
     public void onAllPinValueFilled(String pin) {
         Toast.makeText(this, "onAllPinValueFilled : " + pin, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void allValuesEntered(boolean flag) {
+        Toast.makeText(this, "allValuesEntered : " + flag, Toast.LENGTH_SHORT).show();
+    }
 }

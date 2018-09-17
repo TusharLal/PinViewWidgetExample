@@ -123,15 +123,19 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
             if (editable == editTextPinOne.getEditableText()) {
                 setPinEnteredBackground(editTextPinOne);
                 moveFocus(editTextPinTwo, editTextPinOne);
+                onPinValueEntered.allValuesEntered(false);
             } else if (editable == editTextPinTwo.getEditableText()) {
                 setPinEnteredBackground(editTextPinTwo);
                 moveFocus(editTextPinThree, editTextPinTwo);
+                onPinValueEntered.allValuesEntered(false);
             } else if (editable == editTextPinThree.getEditableText()) {
                 setPinEnteredBackground(editTextPinThree);
                 moveFocus(editTextPinFour, editTextPinThree);
+                onPinValueEntered.allValuesEntered(false);
             } else if (editable == editTextPinFour.getEditableText()) {
                 setPinEnteredBackground(editTextPinFour);
                 onPinValueEntered.onAllPinValueFilled(getPin());
+                onPinValueEntered.allValuesEntered(true);
             }
         }
     }
@@ -244,5 +248,7 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
      */
     public interface OnPinValueEntered {
         void onAllPinValueFilled(String pin);
+
+        void allValuesEntered(boolean flag);
     }
 }
