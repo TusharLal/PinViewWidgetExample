@@ -84,6 +84,29 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
         this.onPinValueEntered = onPinValueEntered;
     }
 
+    /**
+     * Method to clear all the PIN values
+     */
+    public void clearPin() {
+        editTextPinOne.setTag("");
+        editTextPinTwo.setTag("");
+        editTextPinThree.setTag("");
+        editTextPinFour.setTag("");
+        setPinRemovedBackground(editTextPinOne);
+        setPinRemovedBackground(editTextPinTwo);
+        setPinRemovedBackground(editTextPinThree);
+        setPinRemovedBackground(editTextPinFour);
+        editTextPinFour.setFocusableInTouchMode(false);
+        editTextPinFour.setFocusable(false);
+        editTextPinThree.setFocusableInTouchMode(false);
+        editTextPinThree.setFocusable(false);
+        editTextPinTwo.setFocusableInTouchMode(false);
+        editTextPinTwo.setFocusable(false);
+        editTextPinOne.setFocusableInTouchMode(true);
+        editTextPinOne.setFocusable(true);
+        editTextPinOne.requestFocus();
+    }
+
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         // Noting to implement
