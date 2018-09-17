@@ -1,12 +1,12 @@
 package view.pin.example.tusharlal.pinviewwidgetexample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import view.pin.example.tusharlal.pinviewwidgetexample.widget.PinView;
 
-public class MainActivity extends AppCompatActivity implements PinView.OnPinValueEntered{
+public class MainActivity extends AppCompatActivity implements PinView.OnPinValueEntered {
 
     PinView pinView;
 
@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity implements PinView.OnPinValu
 
     @Override
     public void onAllPinValueFilled(String pin) {
-        Toast.makeText(this, "onAllPinValueFilled : "+pin, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "onAllPinValueFilled : " + pin, Toast.LENGTH_SHORT).show();
     }
 }

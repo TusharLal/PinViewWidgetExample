@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +23,14 @@ import view.pin.example.tusharlal.pinviewwidgetexample.R;
 public class PinView extends LinearLayout implements TextWatcher, View.OnKeyListener {
     private final String TAG = PinView.class.getSimpleName();
 
-    View view;
+    private View view;
 
-    EditText editTextPinOne;
-    EditText editTextPinTwo;
-    EditText editTextPinThree;
-    EditText editTextPinFour;
+    private EditText editTextPinOne;
+    private EditText editTextPinTwo;
+    private EditText editTextPinThree;
+    private EditText editTextPinFour;
 
-    OnPinValueEntered onPinValueEntered;
+    private OnPinValueEntered onPinValueEntered;
 
     public PinView(Context context) {
         super(context);
@@ -48,6 +47,11 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
         initializeView(context);
     }
 
+    /**
+     * To initialize all the internal components of PinView.
+     *
+     * @param context
+     */
     private void initializeView(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.pin_view, this);
@@ -71,6 +75,11 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
         editTextPinOne.requestFocus();
     }
 
+    /**
+     * Sets the listener for all values have been entered.
+     *
+     * @param onPinValueEntered
+     */
     public void setOnPinValueEntered(OnPinValueEntered onPinValueEntered) {
         this.onPinValueEntered = onPinValueEntered;
     }
@@ -89,33 +98,24 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
     public void afterTextChanged(Editable editable) {
         if (editable.toString().length() > 0) {
             if (editable == editTextPinOne.getEditableText()) {
-                Log.i(TAG, "editTextPinOne : " + editable.toString());
                 setPinEnteredBackground(editTextPinOne);
-                Log.i(TAG, "Move To (editTextPinTwo) From (editTextPinOne)");
                 moveFocus(editTextPinTwo, editTextPinOne);
             } else if (editable == editTextPinTwo.getEditableText()) {
-                Log.i(TAG, "editTextPinTwo : " + editable.toString());
                 setPinEnteredBackground(editTextPinTwo);
-                Log.i(TAG, "Move To (editTextPinThree) From (editTextPinTwo)");
                 moveFocus(editTextPinThree, editTextPinTwo);
             } else if (editable == editTextPinThree.getEditableText()) {
-                Log.i(TAG, "editTextPinThree : " + editable.toString());
                 setPinEnteredBackground(editTextPinThree);
-                Log.i(TAG, "Move To (editTextPinFour) From (editTextPinThree)");
                 moveFocus(editTextPinFour, editTextPinThree);
             } else if (editable == editTextPinFour.getEditableText()) {
-                Log.i(TAG, "editTextPinFour : " + editable.toString());
                 setPinEnteredBackground(editTextPinFour);
                 onPinValueEntered.onAllPinValueFilled(getPin());
             }
-            Log.i(TAG, "getPin >> " + getPin());
         }
     }
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-        Log.i(TAG, "getPin <<< " + getPin());
-        if (keyCode == KeyEvent.KEYCODE_DEL && keyEvent.getAction()==KeyEvent.ACTION_DOWN) {
+        if (keyCode == KeyEvent.KEYCODE_DEL && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
             final int id = view.getId();
             switch (id) {
                 case R.id.pinText_one:
@@ -123,67 +123,58 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
                     break;
                 case R.id.pinText_two:
                     if (editTextPinTwo.getText().toString().isEmpty()) {
-                        Log.i(TAG, "editTextPinTwo length 0");
-                        editTextPinOne.setText("");
-                        setPinRemovedBackground(editTextPinOne);
+                        removeText(editTextPinOne);
                         moveFocus(editTextPinOne, editTextPinTwo);
                     } else {
-                        Log.i(TAG, "editTextPinTwo : " + editTextPinTwo.getText().toString());
                         setPinRemovedBackground(editTextPinTwo);
                     }
                     break;
                 case R.id.pinText_three:
                     if (editTextPinThree.getText().toString().isEmpty()) {
-                        Log.i(TAG, "editTextPinThree length 0");
-                        editTextPinTwo.setText("");
-                        setPinRemovedBackground(editTextPinTwo);
+                        removeText(editTextPinTwo);
                         moveFocus(editTextPinTwo, editTextPinThree);
                     } else {
-                        Log.i(TAG, "editTextPinThree : " + editTextPinThree.getText().toString());
                         setPinRemovedBackground(editTextPinThree);
                     }
                     break;
                 case R.id.pinText_four:
                     if (editTextPinFour.getText().toString().isEmpty()) {
-                        Log.i(TAG, "editTextPinFour length 0");
-                        editTextPinThree.setText("");
-                        setPinRemovedBackground(editTextPinThree);
+                        removeText(editTextPinThree);
                         moveFocus(editTextPinThree, editTextPinFour);
                     } else {
-                        Log.i(TAG, "editTextPinFour : " + editTextPinFour.getText().toString());
                         setPinRemovedBackground(editTextPinFour);
                     }
                     break;
             }
         }
-//        else if (keyCode <= KeyEvent.KEYCODE_9 && keyCode >= KeyEvent.KEYCODE_0) {
-//            if(!editTextPinOne.getText().toString().isEmpty() && editTextPinOne.hasFocus()){
-//                editTextPinOne.setText(keyEvent.getCharacters());
-//                setPinEnteredBackground(editTextPinOne);
-//                moveFocus(editTextPinTwo, editTextPinOne);
-//            } else if(!editTextPinTwo.getText().toString().isEmpty() && editTextPinTwo.hasFocus()){
-//                editTextPinTwo.setText(keyEvent.getCharacters());
-//                setPinEnteredBackground(editTextPinTwo);
-//                moveFocus(editTextPinThree, editTextPinTwo);
-//            } else if(!editTextPinThree.getText().toString().isEmpty() && editTextPinThree.hasFocus()){
-//                editTextPinThree.setText(keyEvent.getCharacters());
-//                setPinEnteredBackground(editTextPinThree);
-//                moveFocus(editTextPinFour, editTextPinThree);
-//                return onKey(editTextPinFour, keyCode, keyEvent);
-//            }
-//            else if(editTextPinFour.getText().toString().isEmpty()){
-//                editTextPinFour.setText(keyEvent.getCharacters());
-//                setPinEnteredBackground(editTextPinFour);
-//                onPinValueEntered.onAllPinValueFilled(getPin());
-//            }
-//        }
         return false;
     }
 
+    /**
+     * This method returns the entered PIN value.
+     *
+     * @return Pin value
+     */
     private String getPin() {
         return editTextPinOne.getText().toString() + editTextPinTwo.getText().toString() + editTextPinThree.getText().toString() + editTextPinFour.getText().toString();
     }
 
+    /**
+     * Method to remove a PIN value.
+     *
+     * @param editText
+     */
+    private void removeText(EditText editText) {
+        editText.setText("");
+        setPinRemovedBackground(editText);
+    }
+
+    /**
+     * Method to shift focus between PIN views
+     *
+     * @param toView View to which focus needs to be shifted.
+     * @param fromView View from which the focus needs to be shifted.
+     */
     private void moveFocus(EditText toView, EditText fromView) {
         toView.setFocusableInTouchMode(true);
         toView.setFocusable(true);
@@ -192,14 +183,30 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
         fromView.setFocusable(false);
     }
 
+    /**
+     * Method to set background when value is entered for view.
+     *
+     * @param vew whose background needs to be changed
+     */
     private void setPinEnteredBackground(View vew) {
         setPinBackground(vew, ContextCompat.getDrawable(this.getContext(), R.drawable.pin_entered));
     }
 
+    /**
+     * Method to set background when value is removed for view.
+     *
+     * @param vew whose background needs to be changed
+     */
     private void setPinRemovedBackground(View vew) {
         setPinBackground(vew, ContextCompat.getDrawable(this.getContext(), R.drawable.create_pin_background));
     }
 
+    /**
+     * Method to set background on the bases of OS version code.
+     *
+     * @param view
+     * @param background
+     */
     private void setPinBackground(View view, Drawable background) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(background);
@@ -208,6 +215,10 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
         }
     }
 
+    /**
+     * Interface to receive event that all
+     * PIN values have been entered.
+     */
     public interface OnPinValueEntered {
         void onAllPinValueFilled(String pin);
     }
