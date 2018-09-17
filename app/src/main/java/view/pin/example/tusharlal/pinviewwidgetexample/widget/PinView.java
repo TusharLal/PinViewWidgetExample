@@ -88,10 +88,10 @@ public class PinView extends LinearLayout implements TextWatcher, View.OnKeyList
      * Method to clear all the PIN values
      */
     public void clearPin() {
-        editTextPinOne.setTag("");
-        editTextPinTwo.setTag("");
-        editTextPinThree.setTag("");
-        editTextPinFour.setTag("");
+        editTextPinOne.setText("");
+        editTextPinTwo.setText("");
+        editTextPinThree.setText("");
+        editTextPinFour.setText("");
         setPinRemovedBackground(editTextPinOne);
         setPinRemovedBackground(editTextPinTwo);
         setPinRemovedBackground(editTextPinThree);
